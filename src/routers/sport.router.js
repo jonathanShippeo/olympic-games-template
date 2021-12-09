@@ -9,5 +9,7 @@ router.get('/sports/', async (req, res) => {
 });
 
 // ... A COMPLETER ...
-
+router.post('/sports/', async (req, res) => {
+    sportController.create(req, res);
+});
 module.exports = router;
