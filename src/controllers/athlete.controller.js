@@ -18,7 +18,7 @@ class AthleteController {
     const idAthlete = req.params.athleteId;
     const sportsForThisAthlete = await Sport.find({
       athletes: { $all: [idAthlete] },
-    });
+    },{name:1 ,_id: 0});
 
     const sports = sportsForThisAthlete.map((x) => {
       const name = x.name;
@@ -26,7 +26,12 @@ class AthleteController {
       return _data;
     });
 
-    res.json(sports);
+    const response={
+      id : idAthlete,
+      sports : sports
+    }
+
+    res.json(response);
   }
 
   /**
