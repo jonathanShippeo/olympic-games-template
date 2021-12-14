@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-const express = require('express');
-=======
 // Connexion à la base de données
->>>>>>> Stashed changes
 require('./database/mongodb');
 
 //Variables / bibliothèques
