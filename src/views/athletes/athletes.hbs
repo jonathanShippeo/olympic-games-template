@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <!-- On va utiliser bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <title>NodeJs Olympics</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+</head>
+
+<body>
+    <div style="margin: 5px 20px 5px 20px;">
+{{#with athlete}}
+    <h3>athlete : {{user}}</h3><br />
+
+    <p><b>Titre :</b> {{title}}</p>
+    <p><b>Contenu :</b> {{content}}</p>
+
+    <a href="/athletes" class="card-link">Retour</a>
+{{/with}}
+</div>
+
+<a style="margin: 5px 20px 5px 20px;" id="next" href="/athletes/new" class="btn btn-primary">Ajouter un athlete !</a>
+</body>
+
+</html>
