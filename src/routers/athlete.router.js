@@ -26,6 +26,7 @@ router.get('/:athleteId/sports', async (req, res) => {
 
 // ... POST Athletes...
 router.post('/', async (req, res) => {
+    console.log('first value req:'+req.body);
     athleteController.create(req, res);
 });
 

@@ -38,6 +38,7 @@ class AthleteController {
    * Create a new athlete  {POST}
    */
   async create(req, res) {
+    console.log(req.body);
     if (!req.body || !req.body.firstName) {
       console.error("ooops ajoutez tous les champs surout prenom");
       res.status(400).end();

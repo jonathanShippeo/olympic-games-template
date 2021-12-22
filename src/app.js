@@ -13,6 +13,8 @@ const fetch = require('node-fetch');
 //app.use(express.json());
 const Athlete = require('./models/athlete.model');
 
+//API Back end
+
 // Les routes /sport et /athlete sont modifié pour récupérer tous les sports et athletes
 // ... ROUTE sport.router ...
 const sportRouter = require('./routers/sport.router');
@@ -20,8 +22,12 @@ app.use('/api/sports', sportRouter);
 
 // ... ROUTE athlete.router ...
 const athletheRouter = require('./routers/athlete.router');
-const async = require('hbs/lib/async');
+//const async = require('hbs/lib/async');
 app.use('/api/athletes', athletheRouter);
+
+
+
+//VIEWS Front end
 
 app.set('view engine', 'hbs');
 // on indique que nos vues se trouverons toujours dans le dossier views 
@@ -38,7 +44,8 @@ app.get('/test1', (req, res) => {
 app.get('/list',async(req, res) => {
     //const athlets1= await fetch('http://localhost:3000/api/athletes');
    // console.log(athlets1);
-    res.render('athletes/listAthletes', { athletes: {firstName :"jonathan", lastName:"lopez",gender:"m",country:"fr"} });
+   const athletes = await Athlete.find({}).sort({ createdAt: -1 });
+    res.render('athletes/listAthletes', { athletes })
 });
 
 
