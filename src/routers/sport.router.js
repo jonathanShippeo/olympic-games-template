@@ -13,6 +13,11 @@ router.post('/', async (req, res) => {
     sportController.create(req, res);
 });
 
+// Endpoint Ajouter un athlète dans un sport : POST /api/sports/{sportId}/athletes/{athleteId}
+router.post('/:sportId/athletes/:athleteId',async (req,res)=>{
+    sportController.addOneAthleteToSport(req.params.sportId, req.params.athleteId,res);
+})
+
 // ... PUT Sports...
 router.put('/', async (req, res) => {
     sportController.modify(req, res);

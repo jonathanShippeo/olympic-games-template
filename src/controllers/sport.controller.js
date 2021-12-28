@@ -29,6 +29,39 @@ class SportController {
       });
   }
 
+  /**
+   * add an athlete to a spesific sport
+   *
+   */
+  async addOneAthleteToSport(idSport, athleteId, res) {
+    // Query to get content of selected sport
+    const selectedSport = await Sport.findById(idSport);
+    console.log(selectedSport.athletes);
+
+    //Prepare body to add
+    let athletesToPost = [];
+    athletesToPost = selectedSport.athletes;
+
+    if (!athletesToPost.includes(athleteId)) {
+      athletesToPost.push(athleteId);
+    }
+    //modify by update
+    const filter = { _id: idSport };
+    const update = { athletes: athletesToPost };
+
+    Sport.findByIdAndUpdate(
+      filter,
+      update,
+      { new: true },
+      (err, updatedItem) => {
+        // Handle any possible database errors
+        if (err) return res.status(500).send(err);
+        return res.send(updatedItem);
+      }
+    );
+    //TODO Error handling for this end point
+  }
+
   /**  TODO: modify
    * Endpoint to edit a sport with a spesific ID
    */

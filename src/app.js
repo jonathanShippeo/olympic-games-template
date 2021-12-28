@@ -10,7 +10,8 @@ const fetch = require('node-fetch');
 
 // on supprime la ligne qui importait notre fichier json et celle du uuid ! Mongodb génére automatiquement les ids
 //const { v4: uuidv4 } = require('uuid'); // pour générer un id : uuidv4();  ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
-//app.use(express.json());
+
+app.use(express.json());
 const Athlete = require('./models/athlete.model');
 
 //API Back end
