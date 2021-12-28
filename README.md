@@ -25,14 +25,14 @@ curl http://localhost:3000/api/sports -H 'Content-Type: application/json'
 
 - [x] Endpoint Créer un sport : `POST /api/sports`
 - [x] Endpoint Lister les sports : `GET /api/sports` (déjà fourni dans le squelette du projet)
-- [ ] Endpoint Consulter les athlètes d'un sport : `GET /api/sports/{sportId}/athletes`
-- [ ] Endpoint Ajouter un athlète dans un sport : `POST /api/sports/{sportId}/athletes/{athleteId}`
+- [x] Endpoint Consulter les athlètes d'un sport : `GET /api/sports/{sportId}/athletes`
+- [x] Endpoint Ajouter un athlète dans un sport : `POST /api/sports/{sportId}/athletes/{athleteId}`
 
 ### Points de terminaison Athlètes
 
 - [x] Endpoint Créer un athlète : `POST /api/athletes`
 - [x] Endpoint Lister les athlètes : `GET /api/athletes`
-- [ ] Endpoint Consulter les sports d'un athlète : `GET /api/athletes/{athleteId}/sports`
+- [x] Endpoint Consulter les sports d'un athlète : `GET /api/athletes/{athleteId}/sports`
 
 ### Points de terminaison Utilisateurs administrateurs (optionnel)
 
@@ -71,7 +71,7 @@ curl http://localhost:3000/api/sports -H 'Content-Type: application/json'
 
 ## Rendu attendu
 
-- [ ] Code source sur un repo Git (sans le dossier node_modules 🙏)
-- [ ] `README.md`
+- [x] Code source sur un repo Git (sans le dossier node_modules 🙏)
+- [x] `README.md`
   - [ ] Instructions pour installer le projet (`git clone`, `npm install`, `npm start`, éventuels exemples de commande `curl`, ...)
   - [ ] Checklist des API et des fonctionnalités Web avec un statut des tests (OK ✅ ou KO ❌)
