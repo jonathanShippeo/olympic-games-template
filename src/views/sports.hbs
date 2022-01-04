@@ -1,0 +1,75 @@
+{{#if main}}
+    <div id="listSports" class="simpleSection1">
+        <form action="/api/sports/createSports" method="POST">
+        <center>
+        <h1 style="margin-left: 20px;"><strong>Disciplines</strong></h1>
+    <!--<h1 style="margin-left: 20px;"><strong>Sport {{sportName}} :</strong></h1>-->
+    <br>
+    <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                <th scope="col">Nom</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each listSport}}
+                <tr>
+                    <td><a href="/api/sports/{{_id}}/athletes">{{name}}</a></td>
+                </tr>
+                
+            {{/each}}
+    </tbody>
+        </table>
+                <!-- ajouter nouveau Sport -->
+                <input type="text" placeholder="Nom de la discipline" name="name">
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+
+    </center>
+    </form>
+    </div>
+{{else}}
+    <div id="listAthletes" class="simpleSection1">
+         <form action="/api/sports/addAthleteInSports" method="POST">
+    <center>
+            <h1 style="margin-left: 20px;"><strong>Candidats de la discipline {{sportName}}</strong></h1>
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Prénom</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Genre</th>
+          <th scope="col">Pays</th>
+        </tr>
+      </thead>
+      <tbody>
+    
+
+{{#each listAthleteBySport}}
+    <tr>
+          <td><a href="/api/athletes/{{_id}}/sports">{{firstName}}</a></td>
+          <td><a href="/api/athletes/{{_id}}/sports">{{lastName}}</a></td>
+          <td><a href="/api/athletes/{{_id}}/sports">{{gender}}</a></td>
+          <td><a href="/api/athletes/{{_id}}/sports">{{country}}</a></td>
+           
+    </tr>
+
+{{/each}}
+            
+    </tbody>
+        </table>
+        <select name="AthleteId">
+                {{#each listAthlete}}
+                <option value="{{this._id}}">{{this.firstName}} {{this.lastName}}</option>
+                {{/each}}
+            </select>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        </center>
+        </form>
+            <a class="btn btn btn-primary" href="/api/sports" role="button" style="margin-left: 20px;">Retour aux disciplines</a>
+
+    </div>
+{{/if}}
+    
+
+
+

@@ -1,93 +1,45 @@
-const Sport = require("../models/sport.model");
+const Sport = require('../models/sport.model');
+const mongoose = require('mongoose');
 
 class SportController {
-  /**
-   * Lister tous les sports
-   */
-  async list(req, res) {
-    const sports = await Sport.find();
-
-    res.json({
-      count: sports.length,
-      sports: sports,
-    });
+    /*List sports*/
+    async list(req, res) {
+      const sports = await Sport.find();
+      return sports
   }
 
-  /**
-   * Create a new sport  {POST}
-   */
-  async create(req, res) {
-    const newSport = new Sport(req.body);
-    newSport
-      .save()
-      .then((addedItem) => {
-        console.log("New Sport added");
-        return res.status(200).send(addedItem);
-      })
-      .catch((err) => {
-        if (err) return res.status(500).send(err);
-      });
-  }
-
-  /**
-   * add an athlete to a spesific sport
-   *
-   */
-  async addOneAthleteToSport(idSport, athleteId, res) {
-    // Query to get content of selected sport
-    const selectedSport = await Sport.findById(idSport);
-    console.log(selectedSport.athletes);
-
-    //Prepare body to add
-    let athletesToPost = [];
-    athletesToPost = selectedSport.athletes;
-
-    if (!athletesToPost.includes(athleteId)) {
-      athletesToPost.push(athleteId);
+    async getNameSportById(sportId ,res){
+        const SportById = await Sport.findById(sportId);
+        return SportById.name;
     }
-    //modify by update
-    const filter = { _id: idSport };
-    const update = { athletes: athletesToPost };
 
-    Sport.findByIdAndUpdate(
-      filter,
-      update,
-      { new: true },
-      (err, updatedItem) => {
-        // Handle any possible database errors
-        if (err) return res.status(500).send(err);
-        return res.send(updatedItem);
-      }
-    );
-    //TODO Error handling for this end point
-  }
 
-  /**  TODO: modify
+    async insertSport(sportName, res){
+        //add collection mongoose
+        Sport.create(sportName);
+        //redirection
+        res.redirect('/api/sports')
+    }
+
+    
+    async listAthleteIdBySport(sportId ,res){
+        const SportById = await Sport.findById(sportId);
+        return SportById.athletes;
+    }
+
+
+
+    //Ajouter Athlete dans un sport
+    async addAthleteInSport(sportId, athleteId){
+        const monSport = await Sport.findById(sportId);
+        const monAthlete = athleteId;
+        monSport.athletes.push(mongoose.Types.ObjectId(monAthlete));
+        monSport.save();
+    }
+
+    /**  TODO: modify
    * Endpoint to edit a sport with a spesific ID
-   */
-  async modify(req, res) {
-    const idSport = req.body.id;
-    const sport = req.body.name;
-    const idAthletes = req.body.athletes;
-
-    const filter = { _id: idSport };
-    const update = { name: sport, athletes: idAthletes };
-
-    Sport.findByIdAndUpdate(
-      filter,
-      update,
-      { new: true },
-      (err, updatedItem) => {
-        // Handle any possible database errors
-        if (err) return res.status(500).send(err);
-        return res.send(updatedItem);
-      }
-    );
-  }
-
-  /**  TODO: modify
-   * Endpoint to edit a sport with a spesific ID
-   */
+   
   async delete(req, res) {
     // The "selectedSport" in this callback function represents the document that was found.
     Sport.findByIdAndRemove(req.params.id, (err, selectedSport) => {
@@ -101,6 +53,7 @@ class SportController {
       return res.status(200).send(response);
     });
   }
+*/
 }
 
 module.exports = SportController;

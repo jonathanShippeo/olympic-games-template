@@ -11,9 +11,16 @@ const athleteController = new AthleteController();
  * Lister les athlètes : GET /api/athletes
  *  : GET /api/athletes/{athleteId}/sports 
  */
-
 router.get('/', async (req, res) => {
-    athleteController.list(req, res);
+   const listAthlete =  await athleteController.list(req, res);
+   res.render('athletes', {listAthlete, main: true});
+});
+
+router.get('/:athleteId/sports', async (req, res) => {
+  const athleteId = req.params.athleteId;
+  const listSportsAthlete =  await athleteController.listSportsByAthlete(athleteId, res);
+  const athleteName = await athleteController.getNameAthleteById(athleteId, res);
+  res.render('athletes', {listSportsAthlete, athleteName, main: false});
 });
 
 /** 
@@ -25,9 +32,10 @@ router.get('/:athleteId/sports', async (req, res) => {
 });
 
 // ... POST Athletes...
-router.post('/', async (req, res) => {
+router.post('/createAthlete', (req, res) => {
     console.log('first value req:'+req.body);
-    athleteController.create(req, res);
+    const formAthlete = req.body;
+    athleteController.insertAthlete(formAthlete, res);
 });
 
 // ... DELETE Athletes  !! OPTIONNEL !! ...
