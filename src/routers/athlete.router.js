@@ -20,7 +20,9 @@ router.get('/:athleteId/sports', async (req, res) => {
   const athleteId = req.params.athleteId;
   const listSportsAthlete =  await athleteController.listSportsByAthlete(athleteId, res);
   const athleteName = await athleteController.getNameAthleteById(athleteId, res);
-  res.render('athletes', {listSportsAthlete, athleteName, main: false});
+  const athlete = await athleteController.getAthleteById(athleteId, res);
+  console.log(athlete);
+  res.render('athletes', {listSportsAthlete, athleteName,athleteId, athlete,main: false});
 });
 
 /** 
@@ -39,11 +41,27 @@ router.post('/createAthlete', (req, res) => {
 });
 
 // ... DELETE Athletes  !! OPTIONNEL !! ...
+router.post('/deleteAthlete', async (req, res) => {
+  const athleteId = req.params.athleteId;
+  athleteController.deleteAthlete(athleteId, res);
+  //res.redirect('back');
+});
+
+// ... DELETE AVEC GET Athletes  !! OPTIONNEL !! ...
+router.get('/:athleteId/deleteAthleteWithGet', async (req, res) => {
+  const athleteId = req.params.athleteId;
+  //console.log('athleteId :');
+  //console.log(athleteId);
+  athleteController.deleteAthlete(athleteId, res);
+  //res.redirect('back');
+});
+
+/*
+// ... DELETE Athletes  !! OPTIONNEL !! ...
 router.delete('/:id', async (req, res) => {
     athleteController.delete(req, res);
 });
 
-
-
+*/
 
 module.exports = router;

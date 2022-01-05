@@ -15,6 +15,12 @@ class AthleteController {
         return AthleteName;
     }
 
+    async getAthleteById(athleteId ,res){
+      const athlete = await Athlete.findById(athleteId);
+      //console.log(athlete);
+      return athlete
+  }
+
     async insertAthlete(formAthlete, res){
        
        try {
@@ -39,6 +45,20 @@ class AthleteController {
         const listSportsAthlete = await Sport.find({ 'athletes': {$in : mongoose.Types.ObjectId(athleteId) }});
         return listSportsAthlete;
     }
+
+    //supprimer un candidat
+    async deleteAthlete(athleteId, res) {
+        Athlete.findByIdAndRemove(athleteId, (err, selectedAthlete) => {
+          if (err) return res.status(500).send(err);
+    
+          const response = {
+            message: "Athlete successfully deleted",
+            Deleted_id: selectedAthlete._id,
+          };
+          return res.status(200).send(response);
+      });
+    }  
+    
     
     /**  TODO: modify
    * Endpoint to edit a Athlete with a spesific ID

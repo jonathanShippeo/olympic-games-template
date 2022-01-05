@@ -11224,6 +11224,21 @@ header.masthead .site-heading .h1 {
 
 }
 
+
+.simpleSection2 {
+
+  background-color: #4e4e4ee8;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-blend-mode: screen;
+  padding-bottom: 30px;
+  padding-top: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border: 1px solid #ffffff;
+
+}
+
 .colCardDiv {
   font-size: 20px;
 }
@@ -11245,3 +11260,28 @@ header.masthead .site-heading .h1 {
   filter: brightness(1);
   font-size: 20px;
 }
+.selectList1{
+  /*width: 300px;*/
+  height: 40px;
+  text-align-last: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.divSelectList1{
+  display: inline-flex;
+  padding: 30px;
+}
+
+.pictoFont{
+  font-size: x-large;
+  font-family: -webkit-pictograph;
+}
+
+
+.tdLarge{
+  
+  font-size: larger;
+  font-family: -webkit-pictograph;
+}
+

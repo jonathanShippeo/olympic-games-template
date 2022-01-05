@@ -11,6 +11,6 @@ const athleteSchema = new mongoose.Schema({
 
 });
 
-const Athlete = mongoose.model('Athlete', athleteSchema);
+const Athlete = mongoose.model('Athletes', athleteSchema);
 
 module.exports = Athlete;

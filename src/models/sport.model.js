@@ -5,9 +5,9 @@ const Schema = mongoose.Schema;
 
 const sportSchema = new mongoose.Schema({
     name: String,
-    athletes: [{ type: Schema.Types.ObjectId, ref: 'athletes' }]
+    athletes: [{ type: Schema.Types.ObjectId, ref: 'athlete' }]
 });
 
-const Sport = mongoose.model('Sport', sportSchema);
+const Sport = mongoose.model('Sports', sportSchema);
 
 module.exports = Sport;

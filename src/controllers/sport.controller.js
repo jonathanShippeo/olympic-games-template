@@ -1,3 +1,4 @@
+const Athlete = require('../models/athlete.model');
 const Sport = require('../models/sport.model');
 const mongoose = require('mongoose');
 
@@ -13,6 +14,11 @@ class SportController {
         return SportById.name;
     }
 
+  async getSportById(sportId ,res){
+    const sport = await Sport.findById(sportId);
+    return sport
+}
+
 
     async insertSport(sportName, res){
         //add collection mongoose
@@ -27,32 +33,35 @@ class SportController {
         return SportById.athletes;
     }
 
-
+ 
 
     //Ajouter Athlete dans un sport
     async addAthleteInSport(sportId, athleteId){
-        const monSport = await Sport.findById(sportId);
-        const monAthlete = athleteId;
-        monSport.athletes.push(mongoose.Types.ObjectId(monAthlete));
-        monSport.save();
+        const oSport = await Sport.findById(sportId);
+        const oAthlete = athleteId;
+        oSport.athletes.push(mongoose.Types.ObjectId(oAthlete));
+        oSport.save();
     }
 
-    /**  TODO: modify
+    //supprimer un sport
+    async deleteSport(sportId, res) {
+      Sport.findByIdAndRemove(sportId, (err, selectedSport) => {
+        if (err) return res.status(500).send(err);
+  
+        const response = {
+          message: "Sport successfully deleted",
+          Deleted_id: selectedSport._id,
+        };
+        return res.status(200).send(response);
+    });
+  }  
+
+  /**  TODO: modify
    * Endpoint to edit a sport with a spesific ID
    
-  async delete(req, res) {
-    // The "selectedSport" in this callback function represents the document that was found.
-    Sport.findByIdAndRemove(req.params.id, (err, selectedSport) => {
-      if (err) return res.status(500).send(err);
+  
 
-      const response = {
-        message: "Sport successfully deleted",
-        Deleted_id: selectedSport._id,
-      };
-
-      return res.status(200).send(response);
-    });
-  }
+    
 */
 }
 

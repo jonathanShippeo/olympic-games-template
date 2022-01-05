@@ -15,14 +15,18 @@ router.get('/', async (req, res) => {
    res.render('sports', {listSport, listAthlete, main: true});
 });
 
+
+
 //Liste athlètes par sports
 router.get('/:sportId/athletes', async (req, res) => {
   const sportId = req.params.sportId;
+  //console.log(sportId);
   const sportName = await sportController.getNameSportById(sportId)
+  const sport = await sportController.getSportById(sportId)
   const listAthleteIdBySport = await sportController.listAthleteIdBySport(sportId, res);
   const listAthleteBySport = await Athlete.find({ '_id': {$in : listAthleteIdBySport }});
   const listAthlete = await athleteController.list(req, res);
-  res.render('sports', {listAthleteBySport, listAthlete, sportId, sportName: sportName, main: false});
+  res.render('sports', {listAthleteBySport, listAthlete, sportId, sportName: sportName, sport, main: false});
 });
 
 // ... POST Sports...
@@ -36,9 +40,10 @@ router.post('/createSports', (req, res) => {
 
 // Endpoint Ajouter un athlète dans un sport : POST /api/router.post('/addAthleteInSports', (req, res) => {
     router.post('/addAthleteInSports', (req, res) => {
-        const monSport = req.body.sportId;
-        const monAthlete = req.body.AthleteId;
-        sportController.addAthleteInSport(monSport, monAthlete);
+        const oSport = req.body.sportId;
+        const oAthlete = req.body.athleteId;
+        //console.log(oAthlete);
+        sportController.addAthleteInSport(oSport, oAthlete);
         res.redirect('back');
       })
   
@@ -49,8 +54,39 @@ router.put('/', async (req, res) => {
 });
 
 // ... DELETE Sports...
+router.post('/deleteSport', (req, res) => {
+  const sportId = req.body.sportId;
+  sportController.deleteSport(sportId, res);
+  //res.redirect('back');
+});
+
+//Supprimer sport par route get
+router.get('/:sportId/deleteSport2', async (req, res) => {
+  const sportId = req.params.sportId;
+  sportController.deleteSport(sportId, res);
+  //res.redirect('back');
+});
+/*// ... DELETE Sports...
 router.delete('/:id', async (req, res) => {
     sportController.delete(req, res);
+});
+*/
+// ... DELETE Athlete in Sports...
+router.delete('/deleteAthleteInSports', async (req, res) => {
+  sportController.delete(req, res);
+});
+
+//Supprimer un athlete dans ce sport
+router.get('/:athleteId/:sportId/deleteAthlete', async (req, res) => {
+  const sportId = req.params.sportId;
+  const athleteId = req.params.athleteId;
+  //console.log('sportId :');
+  //console.log(sportId);
+  //console.log('athleteId :');
+  //console.log(athleteId);
+  // ⚠️⚠️ Comment envoyé athleteId et sportId ? ⚠️⚠️
+  sportController.delete(req, res);
+  //res.redirect('back');
 });
 
 

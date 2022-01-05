@@ -16,11 +16,11 @@ const athleteRouter = require('./routers/athlete.router');
 app.use('/api/athletes', athleteRouter);
 
 app.get('/', (req, res) => {
-    res.render('index', { name: 'Jeux Olympiques' });
+    res.render('index', { name: 'CyberGames' });
 });
 
 app.get('/index', (req, res) => {
-    res.render('index', { name: 'Jeux Olympiques' });
+    res.render('index', { name: 'CyberGames' });
 });
 
 // Connexion à la base de données
