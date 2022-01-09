@@ -1,6 +1,6 @@
 {{#if main}}
     <div id="listSports" class="simpleSection2">
-        <form action="/api/sports/createSports" method="POST">
+        <form action="/sports/createSports" method="POST">
         <center>
         <h1><strong>Disciplines</strong></h1>
     <!--<h1 style="margin-left: 20px;"><strong>Sport {{sportName}} :</strong></h1>-->
@@ -17,10 +17,10 @@
             <tbody>
             {{#each listSport}}
                 <tr class="tdLarge">
-                    <td><a href="/api/sports/{{_id}}/athletes">{{name}}</a></td>
-                    <td><a href="/api/sports/{{_id}}/athletes">{{athletes.length}}</a></td>
-                    <td class="pictoFont"><a href="/api/sports/{{_id}}/athletes">🔎</a></td>
-                    <td><a style="color: red;" href="/api/sports/{{_id}}/deleteSport2">❌</a></td>
+                    <td><a href="/sports/{{_id}}">{{name}}</a></td>
+                    <td><a href="/sports/{{_id}}">{{athletes.length}}</a></td>
+                    <td class="pictoFont"><a href="/sports/{{_id}}">🔎</a></td>
+                    <td><a style="color: red;" href="/sports/{{_id}}/deleteSport2">❌</a></td>
 
                 </tr>
                 
@@ -43,10 +43,9 @@
     
 {{else}}
 <div id="getSport" class="simpleSection2">
-        <form action="/api/sports/" method="PUT">
+        <form action="/sports/" method="PUT">
         <center>
         <h1>{{sport.name}}</h1>
-    <!--<h1 style="margin-left: 20px;"><strong>Sport {{sportName}} :</strong></h1>-->
     <br>
     <table class="table table-hover">
             <thead class="table-dark">
@@ -63,7 +62,6 @@
                     <td><input class="selectList1" type="text" placeholder="Discipline" name="name" value="{{sport.name}}"></td>
                     <td>{{sport.athletes.length}}</td>
                     <td><button type="submit" class="btn btn-warning">Modifier</button></td>
-                    <!--<td></td>-->
 
                 </tr>
             
@@ -74,7 +72,7 @@
     </form>
     </div>
     <div id="listAthletes" class="simpleSection2">
-        <form action="/api/sports/addAthleteInSports" method="POST">
+        <form action="/sports/addAthleteInSports" method="POST">
             <center>
                 <h2>Participants de la discipline</h2>
                 <br>
@@ -92,11 +90,11 @@
                 <tbody>
                 {{#each listAthleteBySport}}
                     <tr class="tdLarge">
-                        <td><a href="/api/athletes/{{_id}}/sports">{{firstName}}</a></td>
-                        <td><a href="/api/athletes/{{_id}}/sports">{{lastName}}</a></td>
-                        <td><a href="/api/athletes/{{_id}}/sports">{{gender}}</a></td>
-                        <td><a href="/api/athletes/{{_id}}/sports">{{country}}</a></td>
-                        <td><a style="color: red;" href="/api/sports/{{_id}}/{{@root.sportId}}/deleteAthlete">❌</a></td>
+                        <td><a href="/athletes/{{_id}}/sports">{{firstName}}</a></td>
+                        <td><a href="/athletes/{{_id}}/sports">{{lastName}}</a></td>
+                        <td><a href="/athletes/{{_id}}/sports">{{gender}}</a></td>
+                        <td><a href="/athletes/{{_id}}/sports">{{country}}</a></td>
+                        <td><a style="color: red;" href="/sports/{{_id}}/{{@root.sportId}}/deleteAthlete">❌</a></td>
                     </tr>
                 {{/each}}
                 </tbody>
@@ -113,12 +111,14 @@
                 </div>
             </center>
         </form>
-        <form action="/api/sports/deleteSport" method="POST">
+        <form action="/sports/deleteSport" method="POST">
             <input id="inputSportId" name="sportId" type="hidden" value="{{sportId}}">
+            <a href="/sports/{{@root.sportId}}/deleteSport2">
             <button style="margin-left: 20px;"  type="submit" class="btn btn-danger">SUPPRIMER LA DISCIPLINE</button>
+            </a>
         </form>
         <br>
-        <a class="btn btn btn-primary" href="/api/sports" role="button" style="margin-left: 20px;">Retour</a>
+        <a class="btn btn btn-primary" href="/sports" role="button" style="margin-left: 20px;">Retour</a>
     </div>
 {{/if}}
     
