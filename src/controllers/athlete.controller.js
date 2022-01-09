@@ -124,8 +124,9 @@ class AthleteController {
 
   async athleteDetails(athleteId, res) {
     const athlete = await Athlete.findById(athleteId);
-    //console.log(id);
-    res.render("athletes", { athlete,athleteId, main: false });
+    const listSportsAthlete =await this.listSportsByAthlete(athleteId,res);
+    console.log(listSportsAthlete);
+    res.render("athletes", { athlete,athleteId,listSportsAthlete, main: false });
   }
 }
 
