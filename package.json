@@ -15,7 +15,7 @@
     "jeux",
     "olympiques"
   ],
-  "author": "Christophe Bouvard",
+  "author": "Jonathan Lopez GOMEZ & Ahmet YILMAZ",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^10.0.0",
@@ -32,4 +32,5 @@
   "engines": {
     "node": ">=12"
   }
+  
 }
