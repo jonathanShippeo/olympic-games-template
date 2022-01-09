@@ -40,7 +40,7 @@
     
 {{else}}
 <div id="getSport" class="simpleSection2">
-        <form action="/sports/" method="PUT">
+        <form action="/sports/{{sportId}}" method="PUT">
         <center>
         <h1>{{sport.name}}</h1>
     <br>
@@ -58,9 +58,10 @@
             <tr class="tdLarge">
                     <td><input class="selectList1" type="text" placeholder="Discipline" name="name" value="{{sport.name}}"></td>
                     <td>{{sport.athletes.length}}</td>
+                    
                     <td><button type="submit" class="btn btn-warning">Modifier</button></td>
 
-                </tr>
+            </tr>
             
     </tbody>
         </table>

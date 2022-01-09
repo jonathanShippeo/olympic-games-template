@@ -62,6 +62,12 @@ router.post("/addAthleteInSports", async (req, res) => {
   res.redirect(link);
 });
 
+router.put("/:sporId",async (req,res) => {
+  console.log(req.body.name);
+  sportsController.changeSportName(req.params.sporId,req.body.name,res);
+  res.redirect("back");
+});
+
 //Supprimer sport par route get
 router.get("/:sportId/deleteSport2", async (req, res) => {
   const sportId = req.params.sportId;
