@@ -1,0 +1,74 @@
+{{#if main}}
+    <div id="listUsers" class="simpleSection2">
+        <form action="/users/createUsers" method="POST">
+        <center>
+        <h1><strong>System Users</strong></h1>
+    <br>
+    <table class="table table-hover">
+            <thead class="table-dark">
+                <tr class="tdLarge">
+                <th scope="col">Login</th>
+                <th scope="col">Mdp</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+            {{#each users}}
+                <tr class="tdLarge">
+                    <td><a href="/users/{{_id}}">{{login}}</a></td>
+                    <td><a href="/users/{{_id}}">{{password}}</a></td>
+                    <td class="pictoFont"><a href="/users/{{_id}}">🔎</a></td>
+                    <td><a style="color: red;" href="/users/{{_id}}/deleteUser2">❌</a></td>
+
+                </tr>
+                
+            {{/each}}
+            
+            <tr class="tdLarge">
+                    <td><input class="selectList1" type="text" placeholder="Login" name="login"></td>
+                    <td><input class="selectList2" type="text" placeholder="Password" name="password"></td>
+                    <td><button type="submit" class="btn btn-primary">Ajouter</button></td>
+                </tr>
+            
+    </tbody>
+        </table>
+
+    </center>
+    </form>
+    </div>
+    
+{{else}}
+<div id="getUser" class="simpleSection2">
+        <form action= "/users/{{user._id}}" method="PUT">
+        <center>
+        <h1>Edit {{user.login}} credential</h1>
+    <br>
+    <table class="table table-hover">
+            <thead class="table-dark">
+                <tr class="tdLarge">
+                <th scope="col">Nom</th>
+                <th scope="col">Participants</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            <tr class="tdLarge">
+                    <td><input class="selectList1" type="text" placeholder="Login" name="login" value="{{user.login}}"></td>
+                    <td><input class="selectList2" type="text" placeholder="Password" name="pass" value="{{user.password}}"></td>
+                    
+                    <td><button type="submit" class="btn btn-warning">Update</button></td>
+
+            </tr>
+            
+    </tbody>
+        </table>
+
+    </center>
+    </form>
+    </div>
+    
+{{/if}}
+    

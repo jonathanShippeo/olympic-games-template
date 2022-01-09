@@ -4,12 +4,15 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 
+//Api Routers
 const sportApiRouter = require('./routers/api/sport.api.router');
 const athleteApiRouter = require('./routers/api/athlete.api.router');
 const userApiRouter = require('./routers/api/user.api.router');
 
+//Front request Routers
 const athletesPageRouter = require('./routers/front/athletes.page.router');
 const sportsPageRouter = require('./routers/front/sports.page.router');
+const usersPageRouter = require('./routers/front/users.page.router');
 
 
 
@@ -30,6 +33,8 @@ app.get('/', (req, res) => {
 app.use('/athletes',athletesPageRouter);
 //sports pages
 app.use('/sports',sportsPageRouter);
+//users pages
+app.use('/users',usersPageRouter);
 
 // Connexion à la base de données
 require('./database/mongodb');
