@@ -174,6 +174,8 @@ class SportController {
     res.redirect("/sports");
   }
 
+
+
    //Ajouter Athlete dans un sport
    async addAthleteInSport(sportId, athleteId) {
     const oSport = await Sport.findById(sportId);
@@ -209,6 +211,24 @@ class SportController {
     );
 
   }
+
+  async changeSportName(sportId,sportName,res){
+    const filter = { _id: sportId };
+    const update = { name: sportName };
+
+    Sport.findByIdAndUpdate(
+      filter,
+      update,
+      { new: true },
+      (err, updatedItem) => {
+        // Handle any possible database errors
+        if (err) return res.status(500).send(err);
+        res.status(200);
+        console.log('*************************Sport name changed for this sport *********************');
+      }
+    );
+  }
+
 }
 
 module.exports = SportController;

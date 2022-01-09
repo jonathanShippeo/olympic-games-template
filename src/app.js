@@ -6,9 +6,11 @@ app.use(express.urlencoded({ extended: false }));
 
 const sportApiRouter = require('./routers/api/sport.api.router');
 const athleteApiRouter = require('./routers/api/athlete.api.router');
+const userApiRouter = require('./routers/api/user.api.router');
 
 const athletesPageRouter = require('./routers/front/athletes.page.router');
 const sportsPageRouter = require('./routers/front/sports.page.router');
+
 
 
 app.use(express.json());
@@ -17,6 +19,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/api/sports', sportApiRouter);
 app.use('/api/athletes', athleteApiRouter);
+app.use('/api/users',userApiRouter);
 
 //VIEWS Front end
 app.get('/', (req, res) => {
