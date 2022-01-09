@@ -1,4 +1,4 @@
-# Modèle de structure pour le projet Node.js/Express/MongoDB du TP1
+# Projet Node.js/Express/MongoDB du TP1
 
 ## Installation rapide pour le projet
 
@@ -75,10 +75,12 @@ curl http://localhost:3000/api/sports -H 'Content-Type: application/json'
 
 ### Pages Web Utilisateurs (optionnel)
 
-- [ ] Page Web Lister les utilisateurs
-- [ ] Page Web Créer un utilisateur (formulaire)
-- [ ] Page Web ou fonctionnalité Supprimer un utilisateur
+- ✅ Page Web Lister les utilisateurs
+- ✅ Page Web Créer un utilisateur (formulaire)
+- ✅ Page Web ou fonctionnalité Supprimer un utilisateur
 - [ ] Page Web Modifier un utilisateur (formulaire)
+
+![image](https://user-images.githubusercontent.com/30086549/148691481-24b8c0b7-8108-4d4c-81d2-206386034156.png)
 
 ### Autres options avancées (optionnel)
 
