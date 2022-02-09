@@ -20,6 +20,36 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
 
+app.post('/webhook',function(request, response) {
+    const action = request.body.action;
+    console.log(request.body.operation);
+  console.log(request.body.action);
+    switch (action) {
+        case 'sports':
+          response.json(
+            { text: 'Tu as choisi de voir les sports 🏀' }
+          );
+          break;
+          case 'addSport':
+            response.json(
+              { text: 'Tu as bien AJOUTE ton sports 🏀🏀🏀' }
+            );
+            break;
+  
+      case 'athletes':
+        response.json(
+          { text: 'Tu as choisi de voir les athlètes 🏋🏻‍♀️' }
+        );
+        break;
+  
+      default:
+        response.json(
+          { text: 'Je ne suis pas sûr d\'avoir la réponse...'});
+    }
+  });
+
+
+
 app.use('/api/sports', sportApiRouter);
 app.use('/api/athletes', athleteApiRouter);
 app.use('/api/users',userApiRouter);
